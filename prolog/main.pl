@@ -52,10 +52,33 @@ extract_quadrant(Matrix, QX, QY, Quadrant) :-
         between(QY, QY2, Col),
         element_at(Matrix, Row, Col, Element)
     ), Quadrant).
+    
+compare_rows([], []).
+compare_rows([H1|T1], [H2|T2]) :-
+    H1 =:= H2,
+    compare_rows(T1, T2).
+
+compare_matrices([], []).
+compare_matrices([Row1|Matrix1], [Row2|Matrix2]) :-
+    compare_rows(Row1, Row2),
+    compare_matrices(Matrix1, Matrix2).
+
+compare_9x9_matrices(Matrix1, Matrix2) :- 
+    length(Matrix1, 9),
+    length(Matrix2, 9),
+    maplist(length_(9), Matrix1),
+    maplist(length_(9), Matrix2),
+    compare_matrices(Matrix1, Matrix2).
+
+length_(L, List) :- length(List, L).
 
 :- initialization(main).
 
 main :-
+    % Inicializa duas matrizes 9x9
+    init_matrix(Matrix1),
+    init_matrix(Matrix2),
+
     % Inicializa a matriz 9x9
     init_matrix(Matrix),
     format('Matriz 9x9 vazia:~n~w~n', [Matrix]),
@@ -69,5 +92,7 @@ main :-
     (verify_in_column(0, Matrix, 3) -> format('Elemento 0 encontrado na coluna 3~n') ; format('Elemento 0 não encontrado na coluna 3~n')),
 
     (verify_in_quadrant(Matrix, 2, 3, 0) -> format('Elemento 0 encontrado no quadrante 3x3 contendo (2, 3)~n') ; format('Elemento 0 não encontrado no quadrante 3x3 contendo (2, 3)~n')),
+    
+    (compare_9x9_matrices(Matrix1, Matrix2) ->  format('As matrizes são iguais.~n') ; format('As matrizes são diferentes.~n')),
 
     halt.
