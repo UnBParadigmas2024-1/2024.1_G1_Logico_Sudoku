@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+    networks:
+      - webnet
+
+  swi-prolog:
+    build: ./prolog
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge
