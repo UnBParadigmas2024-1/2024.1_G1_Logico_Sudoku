@@ -10,17 +10,23 @@ services:
     networks:
       - webnet
 
-  swi-prolog:
-    build: ./prolog
-    networks:
-      - webnet
+  # swi-prolog:
+  #   build: ./api
+  #   networks:
+  #     - webnet
+  #   ports:
+  #     - "8080:8080"
+  #   stdin_open: true
+  #   tty: true
 
   api:
     build: ./api
     networks:
-    - webnet
-    depends_on:
-      - swi-prolog
+      - webnet
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    tty: true
 
 networks:
   webnet:

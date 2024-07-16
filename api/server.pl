@@ -10,7 +10,8 @@
 :- http_handler(root(api/solve), solve_sudoku_handler, []).
 
 server(Port) :-
-    http_server(http_dispatch, [port(Port)]).
+    http_server(http_dispatch, [port(Port)]),
+    halt.
 
 solve_sudoku_handler(Request) :-
     http_read_json_dict(Request, DictIn),
