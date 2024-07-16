@@ -129,12 +129,37 @@ check_vector_elements([Element|Rest], Matrix, Row, Col, Result) :-
     ;   check_vector_elements(Rest, Matrix, Row, Col, Result)
     ).
 
+init_lifecount(Count) :-
+    \+ lifecount(_),
+    Count > 0,
+    assertz(lifecount(Count)).
+
+decrease :- 
+    lifecount(Life),
+    (Life >= 1 ->
+        writeln(Life),
+        NewLife is Life -1,
+        retract(lifecount(Life)),
+        assertz(lifecount(NewLife)),
+        true
+    ;
+        false
+    ).
+
 init_matrix(Matrix) :-
     create_matrix(9, 0, Matrix).
 
+:- dynamic(lifecount/1).
 :- initialization(main).
 
 main :-
+    % Inicializa contador de vidas
+    init_lifecount(3),
+
+    decrease,
+    decrease,
+    decrease,
+    
     % Inicializa duas matrizes 9x9
     init_matrix(Matrix1),
     fill_matrix(Matrix1,Matrix2),
