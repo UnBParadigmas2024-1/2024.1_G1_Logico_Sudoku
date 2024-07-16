@@ -16,7 +16,7 @@ server(Port) :-
 
 solve_sudoku_handler(Request) :-
     http_read_json_dict(Request, DictIn),
-    main:solve_sudoku(DictIn.board, Solution),
+    % main:solve_sudoku(DictIn.board, Solution),
     reply_json_dict(_{solution: Solution}).
 
 :- initialization(server(8080)).
