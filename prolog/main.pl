@@ -13,6 +13,12 @@ element_at(Matrix, Row, Col, Element) :-
     nth1(Row, Matrix, MatrixRow),
     nth1(Col, MatrixRow, Element).
 
+insert_element(Matrix, Row, Col, Element, NewMatrix) :-
+    % Verifica se a posição (Row, Col) é válida na matriz
+    nth1(Row, Matrix, MatrixRow),         % Obtém a linha desejada
+    nth1(Col, MatrixRow, _OldElement),    % Obtém o elemento antigo (não utilizado aqui)
+    replace(Matrix, Row, Col, Element, NewMatrix).
+
 element_exists(Element, List) :-
     member(Element, List).
 
