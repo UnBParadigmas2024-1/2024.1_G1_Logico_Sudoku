@@ -72,6 +72,9 @@ compare_9x9_matrices(Matrix1, Matrix2) :-
 
 length_(L, List) :- length(List, L).
 
+random_number(RandomNumber) :-
+    random_between(1, 9, RandomNumber).
+
 :- initialization(main).
 
 main :-
@@ -94,5 +97,8 @@ main :-
     (verify_in_quadrant(Matrix, 2, 3, 0) -> format('Elemento 0 encontrado no quadrante 3x3 contendo (2, 3)~n') ; format('Elemento 0 não encontrado no quadrante 3x3 contendo (2, 3)~n')),
     
     (compare_9x9_matrices(Matrix1, Matrix2) ->  format('As matrizes são iguais.~n') ; format('As matrizes são diferentes.~n')),
+
+    random_number(RandomNumber),
+    write('Número aleatório entre 1 e 9: '), write(RandomNumber), nl,
 
     halt.
