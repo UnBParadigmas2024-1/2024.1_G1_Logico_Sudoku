@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 40px);
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.celula {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 40px;
+    border: 1px solid #000;
+    font-size: 16px;
+}
+
+.top-border {
+    border-top: 2px solid #000;
+}
+
+.bottom-border {
+    border-bottom: 2px solid #000;
+}
+
+.left-border {
+    border-left: 2px solid #000;
+}
+
+.right-border {
+    border-right: 2px solid #000;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
