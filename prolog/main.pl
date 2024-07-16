@@ -6,8 +6,8 @@ create_matrix(N, Elem, Matrix) :-
     length(Matrix, N),
     maplist(create_row(N, Elem), Matrix).
 
-init_matrix(Matrix) :-
-    create_matrix(9, 2, Matrix).
+init_matrix(Matrix, N) :-
+    create_matrix(9, N, Matrix).
 
 element_at(Matrix, Row, Col, Element) :-
     nth1(Row, Matrix, MatrixRow),
@@ -72,15 +72,48 @@ compare_9x9_matrices(Matrix1, Matrix2) :-
 
 length_(L, List) :- length(List, L).
 
+% Gera todas as combinações únicas de índices para uma matriz 9x9
+generate_all_indices(Indices) :-
+    findall([Row, Col], (
+        between(1, 9, Row),
+        between(1, 9, Col)
+    ), Indices).
+
+% Seleciona aleatoriamente NumElements combinações únicas de índices
+select_random_indices(NumElements, AllIndices, RandomIndices) :-
+    random_permutation(AllIndices, Shuffled),
+    length(RandomIndices, NumElements),
+    append(RandomIndices, _, Shuffled).
+
+% Preenche a matriz NewMatrix com os elementos da Matrix nos índices especificados por RandomIndices
+fill_matrix(Matrix, [], NewMatrix, NewMatrix).
+fill_matrix(Matrix, [[Row, Col]|Rest], NewMatrix, FilledMatrix) :-
+    element_at(Matrix, Row, Col, Element),
+    update_matrix(NewMatrix, Row, Col, Element, UpdatedMatrix),
+    fill_matrix(Matrix, Rest, UpdatedMatrix, FilledMatrix).
+
+% Atualiza a matriz NewMatrix na posição (Row, Col) com o valor Element
+update_matrix(NewMatrix, Row, Col, Element, UpdatedMatrix) :-
+    nth1(Row, NewMatrix, RowList),
+    replace_nth1(RowList, Col, Element, UpdatedRowList),
+    replace_nth1(NewMatrix, Row, UpdatedRowList, UpdatedMatrix).
+
+% Substitui o N-ésimo elemento de uma lista por NewElement
+replace_nth1([_|T], 1, NewElement, [NewElement|T]).
+replace_nth1([H|T], N, NewElement, [H|R]) :-
+    N > 1,
+    Next is N - 1,
+    replace_nth1(T, Next, NewElement, R).
+
 :- initialization(main).
 
 main :-
     % Inicializa duas matrizes 9x9
-    init_matrix(Matrix1),
-    init_matrix(Matrix2),
+    init_matrix(Matrix1, 2),
+    init_matrix(Matrix2, 2),
 
     % Inicializa a matriz 9x9
-    init_matrix(Matrix),
+    init_matrix(Matrix, 2),
     format('Matriz 9x9 vazia:~n~w~n', [Matrix]),
 
     % Acessa o elemento na posição (2, 3)
@@ -94,5 +127,20 @@ main :-
     (verify_in_quadrant(Matrix, 2, 3, 0) -> format('Elemento 0 encontrado no quadrante 3x3 contendo (2, 3)~n') ; format('Elemento 0 não encontrado no quadrante 3x3 contendo (2, 3)~n')),
     
     (compare_9x9_matrices(Matrix1, Matrix2) ->  format('As matrizes são iguais.~n') ; format('As matrizes são diferentes.~n')),
+
+    % Número de elementos aleatórios a serem buscados
+    NumElements = 30,
+
+    % Gera todas as combinações de índices para a matriz 9x9 e seleciona aleatoriamente NumElements combinações únicas de índices
+    generate_all_indices(AllIndices),
+    select_random_indices(NumElements, AllIndices, RandomIndices),
+    format('Índices gerados: ~w~n', [RandomIndices]),
+
+    % Inicializa uma nova matriz 9x9 com valores 0
+    init_matrix(NewMatrix, 0),
+
+    % Preenche NewMatrix com os elementos encontrados em Matrix nos índices aleatórios
+    fill_matrix(Matrix, RandomIndices, NewMatrix, FilledMatrix),
+    format('Nova matriz preenchida com valores encontrados:~n~w~n', [FilledMatrix]),
 
     halt.
