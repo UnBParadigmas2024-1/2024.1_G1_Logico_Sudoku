@@ -1,4 +1,8 @@
 
+% LEMBRAR DE TIRAR DEPOIS
+:- module(main, [solve_sudoku/2]).
+
+
 create_row(N, Elem, Row) :-
     length(Row, N),
     maplist(=(Elem), Row).
@@ -18,6 +22,10 @@ element_at(Matrix, Row, Col, Element) :-
 :- initialization(main).
 
 main :-
+    % Função de teste - LEMBRAR DE TIRAR DEPOIS
+    solve_sudoku(Board, Solution) :-
+        Solution = Board.
+
     % Inicializa a matriz 9x9
     init_matrix(Matrix),
     format('Matriz 9x9 vazia:~n~w~n', [Matrix]),

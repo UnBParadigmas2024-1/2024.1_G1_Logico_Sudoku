@@ -15,6 +15,13 @@ services:
     networks:
       - webnet
 
+  api:
+    build: ./api
+    networks:
+    - webnet
+    depends_on:
+      - swi-prolog
+
 networks:
   webnet:
     driver: bridge
