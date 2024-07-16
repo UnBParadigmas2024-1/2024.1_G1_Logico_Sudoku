@@ -6,11 +6,11 @@
 
 :- use_module(main).
 
-:- http_handler(root(.), http_reply_from_files('.', []), [prefix]).
-:- http_handler(root(api/solve), solve_sudoku_handler, []).
+:- http_handler(root(start), solve_sudoku_handler, []).
+:- http_handler(root(solve), solve_sudoku_handler, []).
 
 server(Port) :-
-    http_server(http_dispatch, [port(Port)]),
+    http_server(http_dispatch, [port(Port)])
     halt.
 
 solve_sudoku_handler(Request) :-
