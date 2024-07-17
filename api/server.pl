@@ -25,12 +25,13 @@ solve_sudoku_handler(Request) :-
     http_read_json_dict(Request, DictIn),
     nb_getval(sudoku_matrix, StoredMatrix),
     ( main:compare_9x9_matrices(DictIn.puzzle, StoredMatrix)
-    ->  reply_json_dict(_{solution: StoredMatrix})
+    ->  Result = true
     ;   nb_getval(lives, Lives),
         NewLives is Lives - 1,
         nb_setval(lives, NewLives),
-        reply_json_dict(_{error: 'Solução incorreta', vidas: NewLives})
-    ).
+        Result = false
+    ),
+    reply_json_dict(_{solution: Result, vidas: NewLives}).
 
 get_lives_handler(_Request) :-
     nb_getval(lives, Lives),
@@ -41,6 +42,3 @@ get_lives_handler(_Request) :-
 %     reply_json_dict(_{mensagem: "Aqui está a sua ajuda!"}).
 
 :- initialization(server(8080)).
-
-
-
