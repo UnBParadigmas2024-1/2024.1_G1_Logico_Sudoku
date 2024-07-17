@@ -5,18 +5,33 @@
 
 :- use_module(main).
 
-% teste
-:- http_handler(root(.), http_reply_from_files('.', []), [prefix]).
-
-% :- http_handler(root(sudoku/start), solve_sudoku_handler, []).
-:- http_handler(root(sudoku/solve), start_sudoku_handler, []).
-
 server(Port) :-
     http_server(http_dispatch, [port(Port)]).
 
-solve_sudoku_handler(Request) :-
-    http_read_json_dict(Request, DictIn),
-    % main:solve_sudoku(DictIn.board, Solution),
-    reply_json_dict(_{solution: Solution}).
+:- http_handler(root(.), http_reply_from_files('.', []), [prefix]).
+
+:- http_handler(root('sudoku/start'), start_sudoku_handler, [method(get)]).
+:- http_handler(root('sudoku/solve'), solve_sudoku_handler, [method(post)]).
+:- http_handler(root('sudoku/get-lives'), get_lives_handler, [method(get)]).
+:- http_handler(root('sudoku/get-help'), get_help_handler, [method(get)]).
+
+
+start_sudoku_handler(_Request) :-
+    main:init_matrix(Matrix1),
+    main:fill_matrix(Matrix1, Matrix2),
+    reply_json_dict(_{puzzle: Matrix2}).
+
+% solve_sudoku_handler(Request) :-
+%     http_read_json_dict(Request, DictIn),
+%     main:solve(DictIn.matrix, Solution),
+%     reply_json_dict(_{solution: Solution}).
+
+% get_lives_handler(_Request) :-
+    % main:get_lives(Lives),
+    % reply_json_dict(_{vidas: Lives}).
+
+% get_help_handler(_Request) :- 
+%     main:get_help(Help),
+%     reply_json_dict(_{mensagem: Help})
 
 :- initialization(server(8080)).

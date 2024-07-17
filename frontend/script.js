@@ -16,7 +16,7 @@ for (let i = 0; i < 81; i++) {
 }
 
 function iniciarJogo() {
-  fetch(`${api}/iniciar`)
+  fetch(`${api}/sudoku/start`)
     .then((response) => response.json())
     .then((data) => {
       popularTabuleiro(data.puzzle);
@@ -34,7 +34,7 @@ function popularTabuleiro(puzzle) {
 }
 
 function getVidas() {
-  fetch(`${api}/vidas`)
+  fetch(`${api}/sudoku/get-lives`)
     .then((response) => response.json())
     .then((data) => {
       document.getElementById("vidas").textContent = data.vidas;
@@ -43,7 +43,7 @@ function getVidas() {
 }
 
 function getAjuda() {
-  fetch(`${api}/ajuda`)
+  fetch(`${api}/sudoku/get-help`)
     .then((response) => response.json())
     .then((data) => {
       alert(data.mensagem);
@@ -57,7 +57,7 @@ function resolveSudoku() {
     (celula) => parseInt(celula.value) || 0
   );
 
-  fetch(`${api}/solve`, {
+  fetch(`${api}/sudoku/solve`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
