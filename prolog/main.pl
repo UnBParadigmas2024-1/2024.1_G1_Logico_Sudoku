@@ -144,11 +144,13 @@ main :-
     element_at(Matrix2, 2, 3, Element),
     format('Elemento na posição (2, 3): ~w~n', [Element]),
 
-    (verify_in_row(0, Matrix2, 2) -> format('Elemento 0 encontrado na linha 2~n') ; format('Elemento 0 não encontrado na linha 2~n')),
+    FindElement = 2,
+    Row = 2,
+    Column = 3,
 
-    (verify_in_column(0, Matrix2, 3) -> format('Elemento 0 encontrado na coluna 3~n') ; format('Elemento 0 não encontrado na coluna 3~n')),
-
-    (verify_in_quadrant(Matrix2, 2, 3, 0) -> format('Elemento 0 encontrado no quadrante 3x3 contendo (2, 3)~n') ; format('Elemento 0 não encontrado no quadrante 3x3 contendo (2, 3)~n')),
+    (verify_in_row(FindElement, Matrix2, Row) -> format('Elemento ~w encontrado na linha ~w~n', [FindElement, Row]) ; format('Elemento ~w não encontrado na linha ~w~n', [FindElement, Row])),
+    (verify_in_column(FindElement, Matrix2, Col) -> format('Elemento ~w encontrado na coluna ~w~n', [FindElement, Col]) ; format('Elemento ~w não encontrado na coluna ~w~n', [FindElement, Col])),
+    (verify_in_quadrant(Matrix2, 2, 3, FindElement) -> format('Elemento ~w encontrado no quadrante 3x3 contendo (2, 3)~n', [FindElement]) ; format('Elemento ~w não encontrado no quadrante 3x3 contendo (2, 3)~n', [FindElement])),
     
     (compare_9x9_matrices(Matrix1, Matrix2) ->  format('As matrizes são iguais.~n') ; format('As matrizes são diferentes.~n')),
 
