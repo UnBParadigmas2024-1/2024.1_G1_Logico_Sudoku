@@ -18,7 +18,6 @@ element_at(Matrix, Row, Col, Element) :-
 insert_element(Matrix, Row, Col, Element, NewMatrix) :-
     replace(Matrix, Row, Col, Element, NewMatrix).
 
-
 replace([H|T], 1, Col, NewElem, [R|T]) :-
     replace_row(H, Col, NewElem, R).
 replace([H|T], Row, Col, NewElem, [H|R]) :-
@@ -103,7 +102,6 @@ random_number(RandomNumber) :-
 shuffle_list(List) :-
     findall(X, between(1, 9, X), OriginalList),
     random_permutation(OriginalList, List).
-
 
 fill_matrix(Matrix, NewMatrix) :-
     fill_matrix_row(Matrix, 1, NewMatrix).
