@@ -23,8 +23,12 @@ start_sudoku_handler(_Request) :-
 
 solve_sudoku_handler(Request) :-
     http_read_json_dict(Request, DictIn),
-    main:compare_9x9_matrices(DictIn.puzzle, Solution),
-    reply_json_dict(_{solution: Solution}).
+    ( main:compare_9x9_matrices(DictIn.puzzle, Solution) -> 
+        Result = true
+    ;
+        Result = false
+    ),
+    reply_json_dict(_{solution: Result}).
 
 % get_lives_handler(_Request) :-
     % main:get_lives(Lives),
