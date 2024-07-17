@@ -3,7 +3,7 @@ const api = "http://localhost:8080";
 
 for (let i = 0; i < 81; i++) {
   const celula = document.createElement("input");
-  celula.className = "celula";
+  celula.className = "sudoku-board-cell";
   celula.maxLength = 1;
   celula.type = "text";
 
@@ -16,7 +16,8 @@ for (let i = 0; i < 81; i++) {
 }
 
 function iniciarJogo() {
-  fetch(`${api}/iniciar`)
+  console.log('Iniciar Jogo');
+  fetch(`${api}/sudoku/start`)
     .then((response) => response.json())
     .then((data) => {
       popularTabuleiro(data.puzzle);
@@ -25,7 +26,7 @@ function iniciarJogo() {
 }
 
 function popularTabuleiro(puzzle) {
-  const celulas = document.querySelectorAll(".celula");
+  const celulas = document.querySelectorAll(".sudoku-board-cell");
   for (let i = 0; i < 81; i++) {
     const row = Math.floor(i / 9);
     const col = i % 9;
@@ -33,41 +34,50 @@ function popularTabuleiro(puzzle) {
   }
 }
 
-function getVidas() {
-  fetch(`${api}/vidas`)
+function solveMatrix() {
+  fetch(`${api}/sudoku/solve`)
     .then((response) => response.json())
     .then((data) => {
-      document.getElementById("vidas").textContent = data.vidas;
-    })
-    .catch((error) => console.error("Erro:", error));
-}
-
-function getAjuda() {
-  fetch(`${api}/ajuda`)
-    .then((response) => response.json())
-    .then((data) => {
-      alert(data.mensagem);
+      console.log('Solve Matrix', data);
+      popularTabuleiro(data.puzzle);
     })
     .catch((error) => console.error("Erro:", error));
 }
 
 function resolveSudoku() {
-  const celulas = document.querySelectorAll(".celula");
-  const puzzle = Array.from(celulas).map(
-    (celula) => parseInt(celula.value) || 0
-  );
+  const celulas = document.querySelectorAll(".sudoku-board-cell");
+  const puzzle = [];
+  for (let i = 0; i < 81; i++) {
+    const row = Math.floor(i / 9);
+    const col = i % 9;
+    if (!puzzle[row]) {
+      puzzle[row] = [];
+    }
+    puzzle[row][col] = parseInt(celulas[i].value) || 0;
+  }
 
-  fetch(`${api}/solve`, {
+  fetch(`${api}/sudoku/solve`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(puzzle),
+    body: JSON.stringify({ puzzle: puzzle }),
   })
     .then((response) => response.json())
     .then((solution) => {
-      solution.forEach((value, index) => {
-        celulas[index].value = value !== 0 ? value : "";
-      });
-    });
+      popularTabuleiro(solution.puzzle);
+    })
+    .catch((error) => console.error("Erro:", error));
 }
+
+document.getElementById("btn-start").addEventListener("click", iniciarJogo);
+document.getElementById("btn-solve-step").addEventListener("click", () => alert("Solve Step not implemented"));
+document.getElementById("btn-solve-all").addEventListener("click", solveMatrix);
+document.getElementById("btn-clear-board").addEventListener("click", () => popularTabuleiro(Array.from({ length: 9 }, () => Array(9).fill(0))));
+document.querySelector(".js-candidate-toggle").addEventListener("change", function () {
+  if (this.checked) {
+    document.querySelectorAll(".candidates").forEach(el => el.style.display = "block");
+  } else {
+    document.querySelectorAll(".candidates").forEach(el => el.style.display = "none");
+  }
+});
