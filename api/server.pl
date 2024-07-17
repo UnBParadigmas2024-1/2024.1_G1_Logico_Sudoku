@@ -21,10 +21,10 @@ start_sudoku_handler(_Request) :-
     main:fill_matrix(Matrix1, Matrix2),
     reply_json_dict(_{puzzle: Matrix2}).
 
-% solve_sudoku_handler(Request) :-
-%     http_read_json_dict(Request, DictIn),
-%     main:solve(DictIn.matrix, Solution),
-%     reply_json_dict(_{solution: Solution}).
+solve_sudoku_handler(Request) :-
+    http_read_json_dict(Request, DictIn),
+    main:compare_9x9_matrices(DictIn.puzzle, Solution),
+    reply_json_dict(_{solution: Solution}).
 
 % get_lives_handler(_Request) :-
     % main:get_lives(Lives),
