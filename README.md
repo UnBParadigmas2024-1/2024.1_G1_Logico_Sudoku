@@ -83,7 +83,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | Davi Marinho da Silva Campos  |  |  |
 | Diógenes Dantas Lélis Júnior  |  |  |
 | Bernardo Chaves Pissutti  | Ajudei a integrar o front com a lógica do projeto, para isso tive que criar as rotas para receber as requisições e executar as funções em ordem correta, usando a linguagem prolog. Pude realizar esse trabalho com o auxilio da biblioteca http que abstrai o tratamento de requisições http em prolog e facilita bastante o trabalho. | Boa |
-| Abraão Alves  |  |  |
+| Abraão Alves  | Participação do grupo 2 (resolver tabuleiro) | Regular |
 | Denniel William Roriz Lima  | Função de comparação, alguns tratamentos no para validação quando for um resultado verdadeiro ou falso, ajuste de bugs, documentação e outras tarefas dentro da subdivisão "Selecionar dificuldade e gerar tabuleiro" | Boa |
 | Francisco Mizael Santos da Silva  |  |  |
 | Mateus Caltabiano Neves Frauzino  | Participação no grupo 3 (API) e documentação | Regular |
