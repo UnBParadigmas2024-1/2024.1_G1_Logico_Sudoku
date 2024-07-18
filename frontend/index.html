@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div>
+      <div class="wrap">
+        <div id="sudoku-grid" class="sudoku-board" data-board-size="9"></div>
+        <div class="button-container">
+          <div id="btn-start" class="button regular center">Começar</div>
+          <div id="btn-solve-step" class="button dark center">
+            Resolver Passo
+          </div>
+          <div id="btn-solve-all" class="button green center">
+            Resolver Tudo
+          </div>
+          <div id="btn-clear-board" class="button blue center">
+            Limpar Tabuleiro
+          </div>
+          <label class="input">
+            <br /><input type="checkbox" class="js-candidate-toggle" /> Mostrar
+            Dicas
+          </label>
+        </div>
+      </div>
+      <div class="vidas_container">
+        <p style="font-size: 16px">Vidas restantes:</p>
+        <p id="vidas" class="vidas"></p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
