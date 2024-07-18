@@ -20,7 +20,7 @@
 | 19/0091720 |   Lucas Macedo Barboza |
 
 ## Sobre 
-O projeto proposto visa implementar um jogo de sudoku com mais de uma dificuldade 
+O projeto proposto visa implementar um jogo de sudoku que gera um tabuleiro aleatoriamente com a quantidade de células preenchidas de acordo com a dificuldade selecionada. Nesta versão, apresentamos um sistema de vidas e a possibilidade de preencher campos com a resposta correta como dica.
 
 ## Screenshots
 <!-- Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento. -->
@@ -33,8 +33,8 @@ O projeto proposto visa implementar um jogo de sudoku com mais de uma dificuldad
 ![Funções](project/shared/functions.jpg)
 
 ## Instalação 
-**Linguagens**: Prolog<br>
-**Tecnologias**: Docker<br>
+**Linguagens**: Prolog, HTML, CSS<br>
+**Tecnologias**: Docker, CORS<br>
 <!-- Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
 Gifs animados e outras ilustrações são bem-vindos! -->
@@ -63,9 +63,13 @@ docker-compose up
 Obs: Para linux é necessário utilizar o comendo sudo antes
 
 ## Uso 
-Explique como usar seu projeto.
-Procure ilustrar em passos, com apoio de telas do software, seja com base na interface gráfica, seja com base no terminal.
-Nessa seção, deve-se revelar de forma clara sobre o funcionamento do software.
+1. Após iniciar o projeto, clique no botão `Começar` e as células do tabuleiro serão preenchidas.
+   ![image](https://github.com/user-attachments/assets/11f41590-9bc4-4c7d-833b-fbb2a067007e)
+
+2. Para adicionar números às celulas, basta clicar na célula desejada e digitar um número. Caso não conheça, as regras básicas do sudoku podem ser encontradas aqui: [Regras básicas do Sudoku](https://sudoku.com/pt/regras-do-sudoku/)
+3. O botão `Resolver passo` adiciona um número correto no tabuleiro.
+4. O botão `Resolver tudo` finaliza o jogo e verifica se sua resposta para o tabuleiro gerado está correta.
+5. Por fim, para reiniciar, basta apertar em `Limpar tabuleiro` e `Começar` novamente.
 
 ## Participações
 Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
@@ -84,7 +88,6 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | Lucas Macedo Barboza  |  |  |
 
 ## Outros 
-Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:
 
 ### Organização de tarefas 
 O grupo foi separado em quatro grupos menores para as atividades ficarem melhor organizadas. A divisão de tarefas entre cada subgrupo foi a seguinte:
