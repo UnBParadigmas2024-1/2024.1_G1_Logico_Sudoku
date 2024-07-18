@@ -2,9 +2,12 @@
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/http_json)).
 :- use_module(library(http/http_files)).
+:- use_module(library(http/http_cors)).
 :- use_module(library(nb_set)).
 
 :- use_module(main).
+
+:- set_setting_default(http:cors, [*]).
 
 server(Port) :-
     http_server(http_dispatch, [port(Port)]).
@@ -15,6 +18,7 @@ server(Port) :-
 :- http_handler(root('sudoku/get-help'), get_help_handler, [method(get)]).
 
 start_sudoku_handler(_Request) :-
+    cors_enable,
     main:init_matrix(Matrix1),
     main:fill_matrix(Matrix1, Matrix2),
     nb_setval(sudoku_matrix, Matrix2),
@@ -22,6 +26,10 @@ start_sudoku_handler(_Request) :-
     reply_json_dict(_{puzzle: Matrix2}).
 
 solve_sudoku_handler(Request) :-
+    % option(method(post), Request), !,
+    cors_enable(Request,
+                [ methods([get,post,delete])
+                ]),
     http_read_json_dict(Request, DictIn),
     nb_getval(sudoku_matrix, StoredMatrix),
     ( main:compare_9x9_matrices(DictIn.puzzle, StoredMatrix)
