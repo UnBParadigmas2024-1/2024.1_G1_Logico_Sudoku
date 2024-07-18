@@ -84,7 +84,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | Abraão Alves  |  |  |
 | Denniel William Roriz Lima  | Função de comparação, alguns tratamentos no para validação quando for um resultado verdadeiro ou falso, ajuste de bugs, documentação e outras tarefas dentro da subdivisão "Selecionar dificuldade e gerar tabuleiro" | Boa |
 | Francisco Mizael Santos da Silva  |  |  |
-| Mateus Caltabiano Neves Frauzino  |  |  |
+| Mateus Caltabiano Neves Frauzino  | Participação no grupo 3 (API) e documentação | Regular |
 | Lucas Macedo Barboza  | Frontend da aplicação, ajuda nas endpointes da api, ajustes de bugs e integração | Boa |
 
 ## Outros 
