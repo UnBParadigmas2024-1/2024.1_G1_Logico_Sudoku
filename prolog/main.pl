@@ -1,6 +1,5 @@
 :- dynamic element/4.
 
-
 create_row(_, 0, _, _) :- !.
 create_row(MatrixId, Col, Elem, Row) :-
     asserta(element(MatrixId, Row, Col, Elem)),
@@ -127,7 +126,7 @@ compare_9x9_matrices(Matrix1Id, Matrix2Id) :-
 length_(L, List) :- length(List, L).
 
 random_number(RandomNumber) :-
-    random_between(1, 8, RandomNumber).
+    random_between(1, 9, RandomNumber).
 
 shuffle_list(List) :-
     findall(X, between(1, 9, X), OriginalList),
@@ -197,6 +196,26 @@ random_new_number(MatrixId,Row, Col, RandomNumber) :-
     ;  copy_value(Number,RandomNumber)
     ).
 
+clear_random_numbers(MatrixId,Times) :-
+    clear_random_numbers(MatrixId, Times, 1).
+
+clear_random_numbers(_,Times,Times) :-
+    random_number(Random).
+
+clear_random_numbers(MatrixId,Times,PreviousTime) :-
+    random_number(Col),
+    random_number(Row),
+    element_at(MatrixId,Row,Col,Value),
+    (Value < 1
+    ->
+        clear_random_numbers(MatrixId,Times,PreviousTime)
+    ;
+        increment(PreviousTime,NewTimes),
+        insert_element(MatrixId, Row, Col, 0),
+        clear_random_numbers(MatrixId, Times, NewTimes)
+    ).
+
+
 :- initialization(main).
 
 main :-
@@ -223,5 +242,12 @@ main :-
 
     % random_number(RandomNumber),
     % write('Número aleatório entre 1 e 9: '), write(RandomNumber), nl,
+
+    % Número de elementos aleatórios a serem buscados
+    NumElements = 70,
+
+    clear_random_numbers(1,NumElements),
+
+    write("Matriz 1: "),nl,print_matrix(1, 9, 9),
 
     halt.
