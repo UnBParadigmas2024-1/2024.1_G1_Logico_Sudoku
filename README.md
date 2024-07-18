@@ -76,7 +76,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 |Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | -- | -- | -- |
 | Paulo Henrique  |  |  |
-| Paulo Vitor Silva Abi Acl  |  |  |
+| Paulo Vitor Silva Abi Acl  | No geral atuei no subgrupo "Selecionar dificuldade e gerar tabuleiro", mais especificamente na parte de criar o tabuleiro pronto para jogo e também na parte da seleção de dificuldade | Boa |
 | Leonardo de Souza Takehana  |  |  |
 | Davi Marinho da Silva Campos  |  |  |
 | Diógenes Dantas Lélis Júnior  |  |  |
