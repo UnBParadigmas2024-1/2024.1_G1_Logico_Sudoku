@@ -200,8 +200,7 @@ random_new_number(MatrixId,Row, Col, RandomNumber) :-
 clear_random_numbers(MatrixId,Times) :-
     clear_random_numbers(MatrixId, Times, 1).
 
-clear_random_numbers(_,Times,Times) :-
-    random_number(Random).
+clear_random_numbers(_,Times,Times).
 
 clear_random_numbers(MatrixId,Times,PreviousTime) :-
     random_number(Col),
@@ -233,10 +232,24 @@ decrease :-
         false
     ).
 
+get_life(Life) :-
+    lifecount(Life).
+
 select_level(easy, 35).
-select_level(medio, 45).
+select_level(medium, 45).
 select_level(hard, 55).
 
+play_game(MatrixId, Row, Col, Number) :-
+    element_at(MatrixId, Row, Col, Value), 
+    (Value <1 
+    ->
+        (element_found(Number, MatrixId, Row, Col)
+        ->
+            decrease
+        ;
+            insert_element(MatrixId,Row,Col,Number)
+        )
+    ).
 
 init_matrix(Matrix) :-
     create_matrix(9, 0, Matrix).
@@ -273,10 +286,19 @@ main :-
     % random_number(RandomNumber),
     % write('Número aleatório entre 1 e 9: '), write(RandomNumber), nl,
 
-    select_level(easy, NumElements),
+    select_level(hard, NumElements),
 
     clear_random_numbers(1,NumElements),
 
+
+    write("Matriz 1: "),nl,print_matrix(1, 9, 9),
+
+    play_game(1,2,3,5),
+    play_game(1,7,8,9),
+    play_game(1,1,8,1),
+
+    get_life(Life),
+    write("Vida:"),write(Life),nl,
     write("Matriz 1: "),nl,print_matrix(1, 9, 9),
 
     halt.
