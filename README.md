@@ -82,7 +82,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | Diógenes Dantas Lélis Júnior  |  |  |
 | Bernardo Chaves Pissutti  |  |  |
 | Abraão Alves  |  |  |
-| Denniel William Roriz Lima  |  |  |
+| Denniel William Roriz Lima  | Função de comparação, alguns tratamentos no para validação quando for um resultado verdadeiro ou falso, ajuste de bugs, documentação e outras tarefas dentro da subdivisão "Selecionar dificuldade e gerar tabuleiro" | Boa |
 | Francisco Mizael Santos da Silva  |  |  |
 | Mateus Caltabiano Neves Frauzino  |  |  |
 | Lucas Macedo Barboza  |  |  |
