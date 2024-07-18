@@ -215,6 +215,42 @@ clear_random_numbers(MatrixId,Times,PreviousTime) :-
         clear_random_numbers(MatrixId, Times, NewTimes)
     ).
 
+has_zero(MatrixId, Result) :-
+    check_zeros_row(MatrixId, 1, Result).
+
+check_zeros_row(MatrixId, 10, Result):-
+    check_zeros_column(MatrixId, 10, 1, Result).
+
+check_zeros_row(MatrixId, Row, Result):-
+    check_zeros_column(MatrixId, Row, 1, Result1),
+    (Result1 < 1
+        ->
+            copy_value(0,Result)
+        ;
+            NextRow is Row + 1,
+            check_zeros_column(MatrixId, NextRow, 1, Result)
+    ).
+
+check_zeros_column(MatrixId, Row, 10, Result):-
+    element_at(MatrixId, Row, 10, Value),
+    (Value < 1
+        -> 
+            copy_value(0,Result)
+        ;
+            copy_value(1,Result)
+    ).
+
+check_zeros_column(MatrixId, Row, Col, Result):-
+    element_at(MatrixId, Row, Col, Value),
+    (Value < 1
+        -> 
+            copy_value(0,Result)
+        ;
+        NextCol is Col + 1,
+        check_zeros_column(MatrixId, Row, NextCol, Result)
+    ).
+    
+
 init_lifecount(Count) :-
     \+ lifecount(_),
     Count > 0,
@@ -223,7 +259,6 @@ init_lifecount(Count) :-
 decrease :- 
     lifecount(Life),
     (Life >= 1 ->
-        writeln(Life),
         NewLife is Life -1,
         retract(lifecount(Life)),
         assertz(lifecount(NewLife)),
@@ -251,6 +286,17 @@ play_game(MatrixId, Row, Col, Number) :-
         )
     ).
 
+game_status(Status) :-
+    has_zero(1, Result),
+    ( Result =:= 0 ->
+        get_life(Life),
+        (Life > 0 ->
+            Status = 1
+        ;
+            Status = 0)
+    ;
+        Status = 2).
+
 init_matrix(Matrix) :-
     create_matrix(9, 0, Matrix).
 
@@ -267,24 +313,6 @@ main :-
 
     fill_matrix(1),
 
-    write("Matriz 1: "),nl,print_matrix(1, 9, 9),
-    write("Matriz 2: "),nl,print_matrix(2, 9, 9),
-
-    (verify_in_row(0, 1, 2) -> format('Elemento 0 encontrado na linha 2~n') ; format('Elemento 0 não encontrado na linha 2~n')),
-
-    (verify_in_column(0, 1, 3) -> format('Elemento 0 encontrado na coluna 3~n') ; format('Elemento 0 não encontrado na coluna 3~n')),
-
-    (verify_in_quadrant(1, 2, 3, 0) -> format('Elemento 0 encontrado no quadrante 3x3 contendo (2, 3)~n') ; format('Elemento 0 não encontrado no quadrante 3x3 contendo (2, 3)~n')),
-    
-    ( element_found(0, 1, 2, 3)
-    -> format('Elemento 0 encontrado na linha 2, coluna 3 ou no quadrante 3x3 contendo (2, 3)~n')
-    ;  format('Elemento 0 não encontrado na linha 2, coluna 3 ou no quadrante 3x3 contendo (2, 3)~n')
-    ),
-
-    (compare_9x9_matrices(1, 2) ->  format('As matrizes são iguais.~n') ; format('As matrizes são diferentes.~n')),
-
-    % random_number(RandomNumber),
-    % write('Número aleatório entre 1 e 9: '), write(RandomNumber), nl,
 
     select_level(hard, NumElements),
 
@@ -299,6 +327,9 @@ main :-
 
     get_life(Life),
     write("Vida:"),write(Life),nl,
-    write("Matriz 1: "),nl,print_matrix(1, 9, 9),
+    write("Matriz 2: "),nl,print_matrix(1, 9, 9),
 
+    game_status(Status),
+
+    write("Game status:"),write(Status),nl,
     halt.
