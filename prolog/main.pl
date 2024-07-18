@@ -233,6 +233,11 @@ decrease :-
         false
     ).
 
+select_level(easy, 35).
+select_level(medio, 45).
+select_level(hard, 55).
+
+
 init_matrix(Matrix) :-
     create_matrix(9, 0, Matrix).
 
@@ -268,8 +273,7 @@ main :-
     % random_number(RandomNumber),
     % write('Número aleatório entre 1 e 9: '), write(RandomNumber), nl,
 
-    % Número de elementos aleatórios a serem buscados
-    NumElements = 70,
+    select_level(easy, NumElements),
 
     clear_random_numbers(1,NumElements),
 
