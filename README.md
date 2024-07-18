@@ -96,8 +96,19 @@ O grupo foi separado em quatro grupos menores para as atividades ficarem melhor 
 * **Grupo 2** : Resolver tabuleiro e exibir dicas;
 * **Grupo 3**: Api para integrar com o front;
 
+### Lições aprendidas
+   * 
+
 ### Percepções 
-    * Dificuldade em se adaptar a linguagem e ao paradigma logico;
+   * Dificuldade em se adaptar a linguagem e ao paradigma logico
+   * A divisão em grupos muito dependentes uns dos outros dificultou na organização geral da equipe.
+
+### Contribuições e fragilidades
+   * O período de greve certamente prejudicou o ritmo e a organização pessoal de todos, se provando uma dificuldade extra para o trabalho.
+   * 
+
+### Trabalhos futuros
+   * 
 
 
 ## Fontes
