@@ -299,8 +299,11 @@ game_status(Status) :-
     ;
         Status = 2).
 
-init_matrix(Matrix) :-
-    create_matrix(9, 0, Matrix).
+init_matrix(Matrix, Level) :-
+    create_matrix(1, 9, 0, 9),
+    fill_matrix(1),
+    select_level(Level, NumElements),
+    clear_random_numbers(1,NumElements),
 
 :- initialization(main).
 
