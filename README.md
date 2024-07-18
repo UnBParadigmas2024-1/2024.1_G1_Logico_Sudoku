@@ -82,7 +82,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | Leonardo de Souza Takehana  |  |  |
 | Davi Marinho da Silva Campos  |  |  |
 | Diógenes Dantas Lélis Júnior  |  |  |
-| Bernardo Chaves Pissutti  |  |  |
+| Bernardo Chaves Pissutti  | Ajudei a integrar o front com a lógica do projeto, para isso tive que criar as rotas para receber as requisições e executar as funções em ordem correta, usando a linguagem prolog. Pude realizar esse trabalho com o auxilio da biblioteca http que abstrai o tratamento de requisições http em prolog e facilita bastante o trabalho. | Boa |
 | Abraão Alves  |  |  |
 | Denniel William Roriz Lima  | Função de comparação, alguns tratamentos no para validação quando for um resultado verdadeiro ou falso, ajuste de bugs, documentação e outras tarefas dentro da subdivisão "Selecionar dificuldade e gerar tabuleiro" | Boa |
 | Francisco Mizael Santos da Silva  |  |  |
@@ -99,7 +99,10 @@ O grupo foi separado em quatro grupos menores para as atividades ficarem melhor 
 * **Grupo 3**: Api para integrar com o front;
 
 ### Lições aprendidas
-   * 
+   * Com esse trabalho foi possível aprender a criar aplicações conhecidas em uma linguagem nova, permitindo focar exclusivamente na aprendizagem do prolog e do paradigma lógico.
+   * Aprendemos que para percorrer as colunas de uma matriz, em Prolog, é preciso fazer uma transposição na matriz, pois ele não consegue iterar de forma natural pelas colunas como faz pelas linhas. A iteração natural de Prolog é sobre listas de listas, onde cada lista representa uma linha da matriz. Para acessar as colunas, a matriz precisa ser transposta, o que transforma as colunas em linhas, permitindo a iteração natural de Prolog sobre essas listas.
+   * Prolog não foi ideal para o tipo de aplicação que tivemos que desenvolver, apesar de ter alguams ferramentas úteis, a comunidade e os recursos disponíveis se provaram mais limitados em comparação com linguagens mais populares para desenvolvimento web.
+
 
 ### Percepções 
    * Dificuldade em se adaptar a linguagem e ao paradigma logico
@@ -119,3 +122,7 @@ O grupo foi separado em quatro grupos menores para as atividades ficarem melhor 
 <!-- Referencie, adequadamente, as referências utilizadas.
 Indique ainda sobre fontes de leitura complementares. -->
 1. EASYBRAIN. Regras do sudoku. 2024. Disponível em: https://sudoku.com/pt/regras-do-sudoku/. Acesso em: 17 jul. 2024.
+2. SWI-PROLOG. SWI-Prolog documentation. Disponível em: https://www.swi-prolog.org/pldoc/index.html. Acesso em: 17 jul. 2024.
+3. SWI-PROLOG. The HTTP server libraries. Disponível em: https://www.swi-prolog.org/pldoc/man?section=httpserver. Acesso em: 17 jul. 2024.
+
+
