@@ -1,4 +1,5 @@
 :- dynamic element/4.
+:- dynamic(lifecount/1).
 
 create_row(_, 0, _, _) :- !.
 create_row(MatrixId, Col, Elem, Row) :-
@@ -215,10 +216,34 @@ clear_random_numbers(MatrixId,Times,PreviousTime) :-
         clear_random_numbers(MatrixId, Times, NewTimes)
     ).
 
+init_lifecount(Count) :-
+    \+ lifecount(_),
+    Count > 0,
+    assertz(lifecount(Count)).
+
+decrease :- 
+    lifecount(Life),
+    (Life >= 1 ->
+        writeln(Life),
+        NewLife is Life -1,
+        retract(lifecount(Life)),
+        assertz(lifecount(NewLife)),
+        true
+    ;
+        false
+    ).
+
+init_matrix(Matrix) :-
+    create_matrix(9, 0, Matrix).
 
 :- initialization(main).
 
 main :-
+    % Inicializa contador de vidas
+
+    init_lifecount(3),
+
+    
     create_matrix(1, 9, 0, 9),
     create_matrix(2, 9, 0, 9),
 
