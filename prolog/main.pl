@@ -276,7 +276,7 @@ select_level(hard, 55).
 
 play_game(MatrixId, Row, Col, Number) :-
     element_at(MatrixId, Row, Col, Value), 
-    (Value <1 
+    (Value =:= 0 
     ->
         (element_found(Number, MatrixId, Row, Col)
         ->
@@ -284,6 +284,8 @@ play_game(MatrixId, Row, Col, Number) :-
         ;
             insert_element(MatrixId,Row,Col,Number)
         )
+    ; 
+        write("Posicao já preenchida:")
     ).
 
 game_status(Status) :-
@@ -309,7 +311,6 @@ main :-
 
     
     create_matrix(1, 9, 0, 9),
-    create_matrix(2, 9, 0, 9),
 
     fill_matrix(1),
 
