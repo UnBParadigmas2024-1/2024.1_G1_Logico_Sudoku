@@ -36,6 +36,7 @@ function popularTabuleiro(puzzle) {
 }
 
 function solveMatrix() {
+  alert("Resolver tudo não implementado");
   fetch(`${api}/sudoku/solve`)
     .then((response) => response.json())
     .then((data) => {
@@ -95,7 +96,7 @@ function resolveSudoku() {
 document.getElementById("btn-start").addEventListener("click", iniciarJogo);
 document
   .getElementById("btn-solve-step")
-  .addEventListener("click", () => alert("Solve Step not implemented"));
+  .addEventListener("click", () => alert("Resolver passo não implementado"));
 document.getElementById("btn-solve-all").addEventListener("click", solveMatrix);
 document
   .getElementById("btn-clear-board")
@@ -106,6 +107,8 @@ document
   .querySelector(".js-candidate-toggle")
   .addEventListener("change", function () {
     if (this.checked) {
+      alert("Dicas não implementado");
+
       document
         .querySelectorAll(".candidates")
         .forEach((el) => (el.style.display = "block"));
