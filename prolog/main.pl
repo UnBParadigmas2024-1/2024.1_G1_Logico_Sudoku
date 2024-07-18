@@ -303,7 +303,7 @@ init_matrix(Matrix, Level) :-
     create_matrix(1, 9, 0, 9),
     fill_matrix(1),
     select_level(Level, NumElements),
-    clear_random_numbers(1,NumElements),
+    clear_random_numbers(1,NumElements).
 
 :- initialization(main).
 
@@ -312,16 +312,13 @@ main :-
 
     init_lifecount(3),
 
-    
     create_matrix(1, 9, 0, 9),
 
     fill_matrix(1),
 
-
     select_level(hard, NumElements),
 
     clear_random_numbers(1,NumElements),
-
 
     write("Matriz 1: "),nl,print_matrix(1, 9, 9),
 
