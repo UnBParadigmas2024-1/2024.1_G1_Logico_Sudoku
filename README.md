@@ -1,75 +1,106 @@
-# RepositorioTemplate
-Esse repositório é para ser utilizado pelos grupos como um template inicial, da home page do Projeto.
-As seções do Template NÃO DEVEM SER OMITIDAS, sendo TODAS RELEVANTES.
-
-**!! *Atenção: Renomeie o seu repositório para (Ano.Semestre)_(Grupo)_(Paradigma)_(NomeDoProjeto)*. !!** 
-
-Paradigmas:
- - Funcional
- - Logico
- - SMA
-
-**!! *Não coloque os nomes dos alunos no título do repositório*. !!**
-
-**!! *Exemplo de título correto: 2023.2_G1_Logico_ProjetoRoteirosAereos*. !!**
- 
- (Apague esses comentários)
-
-# NomeDoProjeto
+# Sudoku
 
 **Disciplina**: FGA0210 - PARADIGMAS DE PROGRAMAÇÃO - T01 <br>
-**Nro do Grupo (de acordo com a Planilha de Divisão dos Grupos)**: XX<br>
-**Paradigma**: XXXXXXXXXX<br>
+**Nro do Grupo (de acordo com a Planilha de Divisão dos Grupos)**: 01<br>
+**Paradigma**: Lógico<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 19/0023376 |   Abraão Alves Ribeiro |
+| 19/0094257 |   Paulo Henrique Rezende |
+| 19/0047968 |   Paulo Vitor Silva Abi| Acl 
+| 23/2022952 |   Leonardo de Souza Takehana| 
+| 19/0026600 |   Davi Marinho da Silva Campos | 
+| 19/0105267 |   Diógenes Dantas Lélis Júnior| 
+| 19/0103302 |   Bernardo Chaves Pissutti |
+| 17/0161871 |   Denniel William Roriz Lima| 
+| 18/0113321 |   Francisco Mizael Santos da Silva | 
+| 19/0093196 |   Mateus Caltabiano Neves Frauzino| 
+| 19/0091720 |   Lucas Macedo Barboza |
 
 ## Sobre 
-Descreva o seu projeto em linhas gerais. 
-Use referências, links, que permitam conhecer um pouco mais sobre o projeto.
-Capriche nessa seção, pois ela é a primeira a ser lida pelos interessados no projeto.
+O projeto proposto visa implementar um jogo de sudoku com mais de uma dificuldade 
 
 ## Screenshots
-Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento.
+<!-- Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento. -->
+1. Menu principal 
+
+![Menu](project/shared/mainMenu.jpg)
+
+2. Dados de valores
+
+![Funções](project/shared/functions.jpg)
 
 ## Instalação 
-**Linguagens**: xxxxxx<br>
-**Tecnologias**: xxxxxx<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Linguagens**: Prolog<br>
+**Tecnologias**: Docker<br>
+<!-- Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
-Gifs animados e outras ilustrações são bem-vindos!
+Gifs animados e outras ilustrações são bem-vindos! -->
+1. Instalar o Docker em https://docs.docker.com/get-docker/
+2. Instalar o Docker compose em seu ambiente 
+###  Linux
+Para instalação no Linux siga as instruções da página https://docs.docker.com/desktop/install/linux-install/
+### MacOS
+Para instalação no MacOS siga as instruções da página https://docs.docker.com/desktop/install/mac-install/
+### Windows
+Para instalação no Windows siga as instruções da página https://docs.docker.com/desktop/install/windows-install/
+
+3. Dê clone do projeto
+```
+git clone https://github.com/UnBParadigmas2024-1/2024.1_G1_Funcional_Filtro_Kalman.git
+```
+4. Entre na pasta
+```
+cd 2024.1_G1_Logico_Sudoku
+```
+5. Inicie o projeto
+```
+docker-compose up
+```
+
+Obs: Para linux é necessário utilizar o comendo sudo antes
 
 ## Uso 
 Explique como usar seu projeto.
 Procure ilustrar em passos, com apoio de telas do software, seja com base na interface gráfica, seja com base no terminal.
 Nessa seção, deve-se revelar de forma clara sobre o funcionamento do software.
 
-## Vídeo
-Adicione 1 ou mais vídeos com a execução do projeto.
-Procure: 
-(i) Introduzir o projeto;
-(ii) Mostrar passo a passo o código, explicando-o, e deixando claro o que é de terceiros, e o que é contribuição real da equipe;
-(iii) Apresentar particularidades do Paradigma, da Linguagem, e das Tecnologias, e
-(iV) Apresentar lições aprendidas, contribuições, pendências, e ideias para trabalhos futuros.
-OBS: TODOS DEVEM PARTICIPAR, CONFERINDO PONTOS DE VISTA.
-TEMPO: +/- 15min
-
 ## Participações
 Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 |Nome do Membro | Contribuição | Significância da Contribuição para o Projeto (Excelente/Boa/Regular/Ruim/Nula) |
 | -- | -- | -- |
-| Fulano  |  Programação dos Fatos da Base de Conhecimento Lógica | Boa |
+| Paulo Henrique  |  |  |
+| Paulo Vitor Silva Abi Acl  |  |  |
+| Leonardo de Souza Takehana  |  |  |
+| Davi Marinho da Silva Campos  |  |  |
+| Diógenes Dantas Lélis Júnior  |  |  |
+| Bernardo Chaves Pissutti  |  |  |
+| Abraão Alves  |  |  |
+| Denniel William Roriz Lima  |  |  |
+| Francisco Mizael Santos da Silva  |  |  |
+| Mateus Caltabiano Neves Frauzino  |  |  |
+| Lucas Macedo Barboza  |  |  |
 
 ## Outros 
 Quaisquer outras informações sobre o projeto podem ser descritas aqui. Não esqueça, entretanto, de informar sobre:
-(i) Lições Aprendidas;
-(ii) Percepções;
-(iii) Contribuições e Fragilidades, e
-(iV) Trabalhos Futuros.
+
+### Organização de tarefas 
+O grupo foi separado em quatro grupos menores para as atividades ficarem melhor organizadas. A divisão de tarefas entre cada subgrupo foi a seguinte:
+* **Front end**: Criar o layout do projeto e consumir os endpoints para funcionamento feito pelo grupo 3;
+* **Grupo 1**: Selecionar dificuldade e gerar tabuleiro;
+* **Grupo 2** : Resolver tabuleiro e exibir dicas;
+* **Grupo 3**: Api para integrar com o front;
+
+### Percepções 
+    * Dificuldade em se adaptar a linguagem e ao paradigma logico;
+
 
 ## Fontes
-Referencie, adequadamente, as referências utilizadas.
-Indique ainda sobre fontes de leitura complementares.
+<!-- Referencie, adequadamente, as referências utilizadas.
+Indique ainda sobre fontes de leitura complementares. -->
+<!-- 1. HASKELL. Documentação do Haskell. Disponível em: https://www.haskell.org/documentation/. Acesso em: 15 de abril de 2024.
+2. HASKELL STACK. Documentação do Haskell Stack. Disponível em: https://docs.haskellstack.org/en/stable/. Acesso em: 15 de abril de 2024.
+3. APRENDER 3. Materiais disponibilizados em: https://aprender3.unb.br/course/view.php?id=22091&section=2. Acesso em: 15 de abril de 2024.
+4. CASSAVA. Documentação do Cassava. Disponível em: https://hackage.haskell.org/package/cassava. Acesso em: 15 de abril de 2024. -->
