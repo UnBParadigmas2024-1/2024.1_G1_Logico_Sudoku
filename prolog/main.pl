@@ -133,24 +133,8 @@ shuffle_list(List) :-
     findall(X, between(1, 9, X), OriginalList),
     random_permutation(OriginalList, List).
 
-has_negative_one(MatrixId, Rows, Cols, Found) :-
-    (   between(1, Rows, Row),
-        between(1, Cols, Col),
-        element(MatrixId, Row, Col, Element),
-        Element =:= -1
-    ->
-        Found = true
-    ;
-        Found = false
-    ).
-
 fill_matrix(MatrixId):-
-    fill_matrix_row(MatrixId,1),
-    has_negative_one(MatrixId, 9, 9,Found),  
-    ( Found 
-        ->
-            fill_matrix(MatrixId)
-    ).
+    fill_matrix_row(MatrixId,1).
 
 
 fill_matrix_row(MatrixId,10) :-
@@ -186,7 +170,7 @@ random_new_number(MatrixId,Row, Col, Times, 9, RandomNumber) :-
         ;
             NewTimes > 10
             ->
-                RandomNumber = -1
+                RandomNumber = 0
             ;
                 copy_value(Number, RandomNumber)
     ).
@@ -201,7 +185,7 @@ random_new_number(MatrixId,Row, Col, Times, PreviousNumber, RandomNumber) :-
         ;
             NewTimes > 10
             ->
-                RandomNumber = -1
+                RandomNumber = 0
             ;
                 copy_value(Number, RandomNumber)
     ).
