@@ -1,3 +1,6 @@
+:- module(main, [verify_in_row/3, play_game/4]).
+
+
 :- dynamic element/4.
 :- dynamic(lifecount/1).
 
@@ -276,16 +279,11 @@ select_level(hard, 55).
 
 play_game(MatrixId, Row, Col, Number) :-
     element_at(MatrixId, Row, Col, Value), 
-    (Value =:= 0 
+    (element_found(Number, MatrixId, Row, Col)
     ->
-        (element_found(Number, MatrixId, Row, Col)
-        ->
-            decrease
-        ;
-            insert_element(MatrixId,Row,Col,Number)
-        )
-    ; 
-        write("Posicao já preenchida:")
+        decrease
+    ;
+        insert_element(MatrixId,Row,Col,Number)
     ).
 
 game_status(Status) :-
@@ -299,32 +297,41 @@ game_status(Status) :-
     ;
         Status = 2).
 
-init_matrix(Matrix, Level) :-
-    create_matrix(1, 9, 0, 9),
-    fill_matrix(1),
-    select_level(Level, NumElements),
-    clear_random_numbers(1,NumElements).
-
-:- initialization(main).
-
-main :-
-    % Inicializa contador de vidas
-
+init_matrix(MatrixID, Level) :-
+    create_matrix(MatrixID, 9, 0, 9),
     init_lifecount(3),
+    fill_matrix(MatrixID),
+    select_level(Level, NumElements),
+    clear_random_numbers(MatrixID,NumElements).
 
-    init_matrix(_, easy),
-    
-    write("Matriz 1: "),nl,print_matrix(1, 9, 9),
+% :- initialization(main).
 
-    play_game(1,2,3,5),
-    play_game(1,7,8,9),
-    play_game(1,1,8,1),
+% main :-
 
-    get_life(Life),
-    write("Vida:"),write(Life),nl,
-    write("Matriz 2: "),nl,print_matrix(1, 9, 9),
+%     Inicializa contador de vidas
+%     init_matrix(_, easy),
 
-    game_status(Status),
+%     init_lifecount(3),
 
-    write("Game status:"),write(Status),nl,
-    halt.
+%     create_matrix(1, 9, 0, 9),
+
+%     fill_matrix(1),
+
+%     select_level(hard, NumElements),
+
+%     clear_random_numbers(1,NumElements),
+
+%     write("Matriz 1: "),nl,print_matrix(1, 9, 9),
+
+%     play_game(1,2,3,5),
+%     play_game(1,7,8,9),
+%     play_game(1,1,8,1),
+
+%     get_life(Life),
+%     write("Vida:"),write(Life),nl,
+%     write("Matriz 2: "),nl,print_matrix(1, 9, 9),
+
+%     game_status(Status),
+
+%     write("Game status:"),write(Status),nl,
+%     halt.

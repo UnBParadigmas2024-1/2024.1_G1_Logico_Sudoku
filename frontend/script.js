@@ -1,5 +1,6 @@
 const grid = document.getElementById("sudoku-grid");
 const api = "http://localhost:8080";
+let id = 0;
 
 for (let i = 0; i < 81; i++) {
   const celula = document.createElement("input");
@@ -12,14 +13,29 @@ for (let i = 0; i < 81; i++) {
   if ((Math.floor(i / 9) + 1) % 3 === 0) celula.classList.add("bottom-border");
   if ((Math.floor(i % 9) + 1) % 3 === 0) celula.classList.add("right-border");
 
+  celula.addEventListener("input", function () {
+    const row = Math.floor(i / 9);
+    const col = i % 9;
+    const value = parseInt(celula.value) || 0;
+    enviarJogada(value, row, col);
+  });
+  
   grid.appendChild(celula);
 }
 
 function iniciarJogo() {
-  console.log("Iniciar Jogo");
-  fetch(`${api}/sudoku/start`)
+  console.log('Iniciar Jogo');
+  id++;
+  fetch(`${api}/sudoku/start`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id: id })
+  })
     .then((response) => response.json())
     .then((data) => {
+      console.log(data)
       popularTabuleiro(data.puzzle);
       getLives();
     })
@@ -35,15 +51,26 @@ function popularTabuleiro(puzzle) {
   }
 }
 
-function solveMatrix() {
-  alert("Resolver tudo não implementado");
-  fetch(`${api}/sudoku/solve`)
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Solve Matrix", data);
-      popularTabuleiro(data.puzzle);
-    })
-    .catch((error) => console.error("Erro:", error));
+function solveMatrix(puzzle) {
+  fetch(`${api}/sudoku/solve`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ puzzle: puzzle })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.solution) {
+      console.log('Puzzle resolvido corretamente:', data.solution);
+      popularTabuleiro(data.solution);
+      alert('Solução correta!');
+    } else if (data.error) {
+      console.log('Erro na solução:', data.error);
+      alert(`Erro: ${data.error} - Vidas restantes: ${data.vidas}`);
+    }
+  })
+  .catch(error => console.error('Erro:', error));
 }
 
 function getHelp() {
@@ -65,6 +92,21 @@ function getLives() {
       vidas.innerHTML = `10`;
     })
     .catch((error) => console.error("Erro:", error));
+}
+
+function enviarJogada(value, row, col) {
+  fetch(`${api}/sudoku/move`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ number: value, row: row, col: col })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Jogada enviada:', data);
+  })
+  .catch(error => console.error('Erro:', error));
 }
 
 function resolveSudoku() {
