@@ -10,11 +10,20 @@ services:
     networks:
       - webnet
 
-  swi-prolog:
+  api:
+    build: ./api
+    networks:
+      - webnet
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    tty: true
+
+  sudoku-cli:
     build: ./prolog
     networks:
       - webnet
-
+      
 networks:
   webnet:
     driver: bridge
