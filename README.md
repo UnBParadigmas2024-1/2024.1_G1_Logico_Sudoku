@@ -20,21 +20,23 @@
 | 19/0091720 |   Lucas Macedo Barboza |
 
 ## Sobre 
-O projeto proposto visa implementar um jogo de sudoku que gera um tabuleiro aleatoriamente com a quantidade de células preenchidas de acordo com a dificuldade selecionada. Nesta versão, apresentamos um sistema de vidas e a possibilidade de preencher campos com a resposta correta como dica.
+O projeto proposto visa implementar um jogo de sudoku que gera um tabuleiro aleatoriamente com a quantidade de células preenchidas de acordo com a dificuldade selecionada. A ideia inicial era de apresentamos um sistema de vidas e a possibilidade de selecionar entre três diferentes dificuldades, que influenciam na quantidade de células preenchidas ao inicializar o jogo.
 
 ## Screenshots
 <!-- Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento. -->
-1. Menu principal 
+1. Requisição de início de jogo
 
-![Menu](project/shared/mainMenu.jpg)
+![image](https://github.com/user-attachments/assets/89961492-039d-41e9-9acd-27caf6234dba)
 
-2. Dados de valores
 
-![Funções](project/shared/functions.jpg)
+2. Requisição de alteração do valor de célula
+
+![image](https://github.com/user-attachments/assets/1427ce73-3e71-4fbf-a7e4-6658c86815a7)
+
 
 ## Instalação 
 **Linguagens**: Prolog, HTML, CSS<br>
-**Tecnologias**: Docker, CORS<br>
+**Tecnologias**: Docker, swipl<br>
 <!-- Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 Insira um manual ou um script para auxiliar ainda mais.
 Gifs animados e outras ilustrações são bem-vindos! -->
@@ -105,16 +107,15 @@ O grupo foi separado em quatro grupos menores para as atividades ficarem melhor 
 
 ### Contribuições e fragilidades
    * O período de greve certamente prejudicou o ritmo e a organização pessoal de todos, se provando uma dificuldade extra para o trabalho.
-   * 
+   * A arquitetura do projeto foi desenvolvida com um front-end em HTML e uma API em Prolog. Usamos nossa API, que contém a lógica de negócios, para manipular as solicitações do front-end. No entanto, encontramos um problema com o front-end devido à utilização do CORS (Cross-Origin Resource Sharing). O CORS é um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens, conforme especificado pelo W3C. Ele faz uso de cabeçalhos HTTP para informar aos navegadores se um determinado recurso pode ou não ser acessado. Devido a isso, a interface não consegue se comunicar com a API. Para focarmos nosso tempo em tarefas mais importantes, utilizamos o Postman para garantir que a API do sistema esteja funcional. 
 
 ### Trabalhos futuros
+   * Possibilitar o início de novo jogo sem necessidade de rebuildar a aplicação.
+   * Resolver os problemas do CORS.
    * 
 
 
 ## Fontes
 <!-- Referencie, adequadamente, as referências utilizadas.
 Indique ainda sobre fontes de leitura complementares. -->
-<!-- 1. HASKELL. Documentação do Haskell. Disponível em: https://www.haskell.org/documentation/. Acesso em: 15 de abril de 2024.
-2. HASKELL STACK. Documentação do Haskell Stack. Disponível em: https://docs.haskellstack.org/en/stable/. Acesso em: 15 de abril de 2024.
-3. APRENDER 3. Materiais disponibilizados em: https://aprender3.unb.br/course/view.php?id=22091&section=2. Acesso em: 15 de abril de 2024.
-4. CASSAVA. Documentação do Cassava. Disponível em: https://hackage.haskell.org/package/cassava. Acesso em: 15 de abril de 2024. -->
+1. EASYBRAIN. Regras do sudoku. 2024. Disponível em: https://sudoku.com/pt/regras-do-sudoku/. Acesso em: 17 jul. 2024.
