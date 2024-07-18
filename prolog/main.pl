@@ -126,7 +126,7 @@ compare_9x9_matrices(Matrix1Id, Matrix2Id) :-
 length_(L, List) :- length(List, L).
 
 random_number(RandomNumber) :-
-    random_between(1, 8, RandomNumber).
+    random_between(1, 9, RandomNumber).
 
 shuffle_list(List) :-
     findall(X, between(1, 9, X), OriginalList),
@@ -196,6 +196,26 @@ random_new_number(MatrixId,Row, Col, RandomNumber) :-
     ;  copy_value(Number,RandomNumber)
     ).
 
+clear_random_numbers(MatrixId,Times) :-
+    clear_random_numbers(MatrixId, Times, 1).
+
+clear_random_numbers(_,Times,Times) :-
+    random_number(Random).
+
+clear_random_numbers(MatrixId,Times,PreviousTime) :-
+    random_number(Col),
+    random_number(Row),
+    element_at(MatrixId,Row,Col,Value),
+    (Value < 1
+    ->
+        clear_random_numbers(MatrixId,Times,PreviousTime)
+    ;
+        increment(PreviousTime,NewTimes),
+        insert_element(MatrixId, Row, Col, 0),
+        clear_random_numbers(MatrixId, Times, NewTimes)
+    ).
+
+
 :- initialization(main).
 
 main :-
@@ -224,18 +244,10 @@ main :-
     % write('Número aleatório entre 1 e 9: '), write(RandomNumber), nl,
 
     % Número de elementos aleatórios a serem buscados
-    NumElements = 30,
+    NumElements = 70,
 
-    % Gera todas as combinações de índices para a matriz 9x9 e seleciona aleatoriamente NumElements combinações únicas de índices
-    generate_all_indices(AllIndices),
-    select_random_indices(NumElements, AllIndices, RandomIndices),
-    format('Índices gerados: ~w~n', [RandomIndices]),
+    clear_random_numbers(1,NumElements),
 
-    % Inicializa uma nova matriz 9x9 com valores 0
-    init_matrix(NewMatrix, 0),
-
-    % Preenche NewMatrix com os elementos encontrados em Matrix nos índices aleatórios
-    fill_matrix(Matrix, RandomIndices, NewMatrix, FilledMatrix),
-    format('Nova matriz preenchida com valores encontrados:~n~w~n', [FilledMatrix]),
+    write("Matriz 1: "),nl,print_matrix(1, 9, 9),
 
     halt.
