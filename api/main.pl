@@ -86,10 +86,10 @@ lists_firsts_rests([], [], []).
 lists_firsts_rests([[F|Os]|Rest], [F|Fs], [Os|Oss]) :-
     lists_firsts_rests(Rest, Fs, Oss).
 
-verify_in_quadrant(MatrixId, X, Y, Element) :-
-    matrix_to_list(MatrixId,10,10,Matrix),
-    QX is ((X - 1) // 3) * 3 + 1,
-    QY is ((Y - 1) // 3) * 3 + 1,
+verify_in_quadrant(MatrixId, Row, Col, Element) :-
+    matrix_to_list(MatrixId, 10, 10, Matrix),
+    QX is ((Row - 1) // 3) * 3 + 1,
+    QY is ((Col - 1) // 3) * 3 + 1,
     extract_quadrant(Matrix, QX, QY, Quadrant),
     element_exists(Element, Quadrant).
 
@@ -99,7 +99,8 @@ extract_quadrant(Matrix, QX, QY, Quadrant) :-
     findall(Element, (
         between(QX, QX2, Row),
         between(QY, QY2, Col),
-        element_at(Matrix, Row, Col, Element)
+        nth1(Row, Matrix, MatrixRow),
+        nth1(Col, MatrixRow, Element)
     ), Quadrant).
 
 element_found(Element, MatrixId, Row, Col) :-
