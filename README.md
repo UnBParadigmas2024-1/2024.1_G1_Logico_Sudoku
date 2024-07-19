@@ -20,19 +20,29 @@
 | 19/0091720 |   Lucas Macedo Barboza |
 
 ## Sobre 
-O projeto proposto visa implementar um jogo de sudoku que gera um tabuleiro aleatoriamente com a quantidade de células preenchidas de acordo com a dificuldade selecionada. A ideia inicial era de apresentamos um sistema de vidas e a possibilidade de selecionar entre três diferentes dificuldades, que influenciam na quantidade de células preenchidas ao inicializar o jogo.
+O projeto proposto tem como objetivo implementar um jogo de Sudoku, que gera um tabuleiro aleatório para o jogador resolver. O jogo inclui um sistema de vidas, onde os jogadores perdem uma vida ao fazer uma jogada incorreta. Quando todas as vidas se esgotam, o jogador deve recomeçar o jogo do zero.
+
+A lógica do Sudoku foi desenvolvida em Prolog e se comunica com a interface, construída utilizando HTML, CSS e JavaScript, através de uma API também escrita em Prolog. A interface pode ser acessa através do ```localhost:80``` . Todos esses serviços são orquestrados pelo Docker Compose, que facilita o processo de teste e execução do ambiente.
 
 ## Screenshots
 <!-- Adicione 2 ou mais screenshots do projeto em termos de interface e/ou funcionamento. -->
+#### A seguir temnos a interface de programação (API) do jogo:
+
 1. Requisição de início de jogo
 
 ![image](https://github.com/user-attachments/assets/89961492-039d-41e9-9acd-27caf6234dba)
-
 
 2. Requisição de alteração do valor de célula
 
 ![image](https://github.com/user-attachments/assets/1427ce73-3e71-4fbf-a7e4-6658c86815a7)
 
+#### Abaixo está a interface gráfica desenvolvida em HTML, CSS, e JS:
+
+![image](https://github.com/user-attachments/assets/68686725-72d0-4561-9b14-7f026dc18443)
+
+#### A seguir um gif mostrando o jogo em execução:
+
+![ezgif-1-9acede5c00](https://github.com/user-attachments/assets/a53ae80b-64f6-4407-8482-8890321d736d)
 
 ## Instalação 
 **Linguagens**: Prolog, HTML, CSS<br>
@@ -79,7 +89,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | -- | -- | -- |
 | Paulo Henrique  | Trabalhei no subgrupo "Resolver tabuleiro e exibir dicas", desta forma criei as funções responsáveis por fazer validação dos números que não podem se repertir para a coluna, linha e quadrante. Como o prolog faz a varredura de forma horizontal no vetor da matriz, tive que criar a função de transposição da matriz, para que programa conseguisse ler os elementos da coluna. | Boa |
 | Paulo Vitor Silva Abi Acl  | No geral atuei no subgrupo "Selecionar dificuldade e gerar tabuleiro", mais especificamente na parte de criar o tabuleiro pronto para jogo e também na parte da seleção de dificuldade | Boa |
-| Leonardo de Souza Takehana  |  Atuei um pouco em todas as areas do projeto, com foco na parte lógica e organizei os grupos de trabalho | Excelente |
+| Leonardo de Souza Takehana  |  |  |
 | Davi Marinho da Silva Campos  | Atuei na implementação do frontend e na integração e criação da API, ajudei na lógica do programa e participei das reuniões com os outros integrantes para a implementação do projeto. | Boa  |
 | Diógenes Dantas Lélis Júnior  |  |  |
 | Bernardo Chaves Pissutti  | Ajudei a integrar o front com a lógica do projeto, para isso tive que criar as rotas para receber as requisições e executar as funções em ordem correta, usando a linguagem prolog. Pude realizar esse trabalho com o auxilio da biblioteca http que abstrai o tratamento de requisições http em prolog e facilita bastante o trabalho. | Boa |
@@ -113,8 +123,8 @@ O grupo foi separado em quatro grupos menores para as atividades ficarem melhor 
    * A arquitetura do projeto foi desenvolvida com um front-end em HTML e uma API em Prolog. Usamos nossa API, que contém a lógica de negócios, para manipular as solicitações do front-end. No entanto, encontramos um problema com o front-end devido à utilização do CORS (Cross-Origin Resource Sharing). O CORS é um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens, conforme especificado pelo W3C. Ele faz uso de cabeçalhos HTTP para informar aos navegadores se um determinado recurso pode ou não ser acessado. Devido a isso, a interface não consegue se comunicar com a API. Para focarmos nosso tempo em tarefas mais importantes, utilizamos o Postman para garantir que a API do sistema esteja funcional. 
 
 ### Trabalhos futuros
-   * Implementar mecanicas de dicas e anotações
-   * Implementar resolução automatica
+   * Possibilitar o início de novo jogo sem necessidade de rebuildar a aplicação.
+   * Resolver os problemas do CORS.
 
 
 ## Fontes
@@ -123,5 +133,3 @@ Indique ainda sobre fontes de leitura complementares. -->
 1. EASYBRAIN. Regras do sudoku. 2024. Disponível em: https://sudoku.com/pt/regras-do-sudoku/. Acesso em: 17 jul. 2024.
 2. SWI-PROLOG. SWI-Prolog documentation. Disponível em: https://www.swi-prolog.org/pldoc/index.html. Acesso em: 17 jul. 2024.
 3. SWI-PROLOG. The HTTP server libraries. Disponível em: https://www.swi-prolog.org/pldoc/man?section=httpserver. Acesso em: 17 jul. 2024.
-
-
