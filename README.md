@@ -113,9 +113,8 @@ O grupo foi separado em quatro grupos menores para as atividades ficarem melhor 
    * A arquitetura do projeto foi desenvolvida com um front-end em HTML e uma API em Prolog. Usamos nossa API, que contém a lógica de negócios, para manipular as solicitações do front-end. No entanto, encontramos um problema com o front-end devido à utilização do CORS (Cross-Origin Resource Sharing). O CORS é um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens, conforme especificado pelo W3C. Ele faz uso de cabeçalhos HTTP para informar aos navegadores se um determinado recurso pode ou não ser acessado. Devido a isso, a interface não consegue se comunicar com a API. Para focarmos nosso tempo em tarefas mais importantes, utilizamos o Postman para garantir que a API do sistema esteja funcional. 
 
 ### Trabalhos futuros
-   * Possibilitar o início de novo jogo sem necessidade de rebuildar a aplicação.
    * Implementar mecanicas de dicas e anotações
-   * 
+   * Implementar resolução automatica
 
 
 ## Fontes

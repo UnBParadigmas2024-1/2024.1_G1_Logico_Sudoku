@@ -16,16 +16,15 @@ server(Port) :-
 :- http_handler(root('sudoku/move'), move_sudoku_handler, [method(post)]).
 :- http_handler(root('sudoku/get-lives'), get_lives_handler, [method(get)]).
 :- http_handler(root('sudoku/status'), get_status_handler, [method(get)]).
+:- http_handler(root('sudoku/init-lives'), get_init_lives_handler, [method(get)]).
+:- http_handler(root('sudoku/restart-lives'), get_restart_lives_handler, [method(get)]).
 % :- http_handler(root('sudoku/solve'), solve_sudoku_handler, [method(post)]).
 % :- http_handler(root('sudoku/get-help'), get_help_handler, [method(get)]).
 
 start_sudoku_handler(Request) :-
-    cors_enable,
-    http_read_json_dict(Request, DictIn),
-    nb_setval(level, easy),
-    nb_getval(level, Level),
-    main:init_matrix(1, Level),
-    main:matrix_to_list(1, 9, 9, MatrixList),
+    main:create_matrix(1,9,0,9),
+    main:init_matrix(1, easy),
+    main:matrix_to_list(1, 10, 10, MatrixList),
 
     reply_json_dict(_{puzzle: MatrixList}).
 
@@ -41,6 +40,13 @@ get_lives_handler(_Request) :-
      main:get_life(Life),
      reply_json_dict(_{vidas: Life}).
 
+get_init_lives_handler(_Request) :-
+     main:init_lifecount(3),
+     reply_json_dict(_{vidas: 3}).
+
+get_restart_lives_handler(_Request) :-
+     main:restart_life,
+     reply_json_dict(_{vidas: 3}).
 
 get_status_handler(_Request) :-
      main:game_status(Status),

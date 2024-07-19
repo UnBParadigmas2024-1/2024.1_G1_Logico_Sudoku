@@ -27,7 +27,7 @@ for (let i = 0; i < 81; i++) {
 
 function iniciarJogo() {
   console.log('Iniciar Jogo');
-  id++;
+  id=1;
   fetch(`${api}/sudoku/start`, {
     method: 'POST',
     headers: {
@@ -39,6 +39,8 @@ function iniciarJogo() {
     .then((data) => {
       console.log(data)
       popularTabuleiro(data.puzzle);
+      initLives();
+      restartLives();
       getLives();
     })
     .catch((error) => console.error("Erro:", error));
@@ -96,6 +98,26 @@ function enviarJogada(value, row, col) {
 }
 
 
+function initLives() {
+  fetch(`${api}/sudoku/init-lives`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  .then(response => response.json())
+  .catch(error => console.error('Erro:', error));
+}
+function restartLives() {
+  fetch(`${api}/sudoku/restart-lives`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  .then(response => response.json())
+  .catch(error => console.error('Erro:', error));
+}
 function getLives() {
   fetch(`${api}/sudoku/get-lives`, {
     method: 'GET',
@@ -105,7 +127,6 @@ function getLives() {
   })
   .then(response => response.json())
   .then(data => {
-    // Atualiza o conteúdo do parágrafo com o id 'vidas'
     document.getElementById('vidas').textContent = data.vidas;
     console.log('Vidas recebidas:', data);
   })

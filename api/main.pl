@@ -63,12 +63,12 @@ element_exists(Element, List) :-
     member(Element, List).
 
 verify_in_row(Element, MatrixId, Row) :-
-    matrix_to_list(MatrixId,9,9,Matrix),
+    matrix_to_list(MatrixId,10,10,Matrix),
     nth1(Row, Matrix, MatrixRow),
     element_exists(Element, MatrixRow).
 
 verify_in_column(Element, MatrixId, Col) :-
-    matrix_to_list(MatrixId,9,9,Matrix),
+    matrix_to_list(MatrixId,10,10,Matrix),
     transpose(Matrix, TransposedMatrix),
     nth1(Col, TransposedMatrix, Column),
     element_exists(Element, Column).
@@ -87,7 +87,7 @@ lists_firsts_rests([[F|Os]|Rest], [F|Fs], [Os|Oss]) :-
     lists_firsts_rests(Rest, Fs, Oss).
 
 verify_in_quadrant(MatrixId, X, Y, Element) :-
-    matrix_to_list(MatrixId,9,9,Matrix),
+    matrix_to_list(MatrixId,10,10,Matrix),
     QX is ((X - 1) // 3) * 3 + 1,
     QY is ((Y - 1) // 3) * 3 + 1,
     extract_quadrant(Matrix, QX, QY, Quadrant),
@@ -270,6 +270,17 @@ decrease :-
         false
     ).
 
+restart_life :- 
+    lifecount(Life),
+    (Life < 4 ->
+        NewLife is 3,
+        retract(lifecount(Life)),
+        assertz(lifecount(NewLife)),
+        true
+    ;
+        false
+    ).
+
 get_life(Life) :-
     lifecount(Life).
 
@@ -277,8 +288,8 @@ select_level(easy, 35).
 select_level(medium, 45).
 select_level(hard, 55).
 
+
 play_game(MatrixId, Row, Col, Number) :-
-    element_at(MatrixId, Row, Col, Value), 
     (element_found(Number, MatrixId, Row, Col)
     ->
         decrease
@@ -297,12 +308,12 @@ game_status(Status) :-
     ;
         Status = 2).
 
-init_matrix(MatrixID, Level) :-
-    create_matrix(MatrixID, 9, 0, 9),
-    init_lifecount(3),
-    fill_matrix(MatrixID),
+
+init_matrix(MatrixId, Level) :-
+    create_matrix(MatrixId, 9, 0, 9),
+    fill_matrix(MatrixId),
     select_level(Level, NumElements),
-    clear_random_numbers(MatrixID,NumElements).
+    clear_random_numbers(MatrixId,NumElements).
 
 % :- initialization(main).
 
