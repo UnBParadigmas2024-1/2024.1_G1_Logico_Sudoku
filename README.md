@@ -76,12 +76,10 @@ Obs: Para linux é necessário utilizar o comendo sudo antes
 
 ## Uso 
 1. Após iniciar o projeto, clique no botão `Começar` e as células do tabuleiro serão preenchidas.
-   ![image](https://github.com/user-attachments/assets/11f41590-9bc4-4c7d-833b-fbb2a067007e)
-
+![image](https://github.com/user-attachments/assets/68686725-72d0-4561-9b14-7f026dc18443)
 2. Para adicionar números às celulas, basta clicar na célula desejada e digitar um número. Caso não conheça, as regras básicas do sudoku podem ser encontradas aqui: [Regras básicas do Sudoku](https://sudoku.com/pt/regras-do-sudoku/)
-3. O botão `Resolver passo` adiciona um número correto no tabuleiro.
-4. O botão `Resolver tudo` finaliza o jogo e verifica se sua resposta para o tabuleiro gerado está correta.
-5. Por fim, para reiniciar, basta apertar em `Limpar tabuleiro` e `Começar` novamente.
+3. Assim que você adicionar o número em uma celula o jogo irá verificar se a resposata está correta, se tiver, a sua contagem de vida continuará a mesma, se o seu palpite estiver errado a contagem de vida irá diminuir.
+4. Por fim, para reiniciar, basta apertar em `Começar` novamente.
 
 ## Participações
 Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
@@ -123,9 +121,8 @@ O grupo foi separado em quatro grupos menores para as atividades ficarem melhor 
    * A arquitetura do projeto foi desenvolvida com um front-end em HTML e uma API em Prolog. Usamos nossa API, que contém a lógica de negócios, para manipular as solicitações do front-end. No entanto, encontramos um problema com o front-end devido à utilização do CORS (Cross-Origin Resource Sharing). O CORS é um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens, conforme especificado pelo W3C. Ele faz uso de cabeçalhos HTTP para informar aos navegadores se um determinado recurso pode ou não ser acessado. Devido a isso, a interface não consegue se comunicar com a API. Para focarmos nosso tempo em tarefas mais importantes, utilizamos o Postman para garantir que a API do sistema esteja funcional. 
 
 ### Trabalhos futuros
-   * Possibilitar o início de novo jogo sem necessidade de rebuildar a aplicação.
-   * Resolver os problemas do CORS.
-
+   * Implementar mecanicas de dicas e anotações
+   * Implementar resolução automatica
 
 ## Fontes
 <!-- Referencie, adequadamente, as referências utilizadas.
