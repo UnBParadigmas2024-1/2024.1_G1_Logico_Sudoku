@@ -69,8 +69,15 @@ cd 2024.1_G1_Logico_Sudoku
 ```
 5. Inicie o projeto
 ```
-docker-compose up
+docker-compose up --build
 ```
+ Ou
+```
+docker compose up --build
+```
+6. Acessar Interface
+
+Abra o navegador e acesse o `http://localhost:80`
 
 Obs: Para linux é necessário utilizar o comendo sudo antes
 
@@ -87,8 +94,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | -- | -- | -- |
 | Paulo Henrique  | Trabalhei no subgrupo "Resolver tabuleiro e exibir dicas", desta forma criei as funções responsáveis por fazer validação dos números que não podem se repertir para a coluna, linha e quadrante. Como o prolog faz a varredura de forma horizontal no vetor da matriz, tive que criar a função de transposição da matriz, para que programa conseguisse ler os elementos da coluna. | Boa |
 | Paulo Vitor Silva Abi Acl  | No geral atuei no subgrupo "Selecionar dificuldade e gerar tabuleiro", mais especificamente na parte de criar o tabuleiro pronto para jogo e também na parte da seleção de dificuldade | Boa |
-| Leonardo de Souza Takehana  | Atuei um pouco em todas as areas do projeto, com foco na parte lógica e organizei os grupos de trabalho	
- | Excelente |
+| Leonardo de Souza Takehana  | Atuei um pouco em todas as areas do projeto, com foco na parte lógica e organizei os grupos de trabalho	| Excelente |
 | Davi Marinho da Silva Campos  | Atuei na implementação do frontend e na integração e criação da API, ajudei na lógica do programa e participei das reuniões com os outros integrantes para a implementação do projeto. | Boa  |
 | Diógenes Dantas Lélis Júnior  |  |  |
 | Bernardo Chaves Pissutti  | Ajudei a integrar o front com a lógica do projeto, para isso tive que criar as rotas para receber as requisições e executar as funções em ordem correta, usando a linguagem prolog. Pude realizar esse trabalho com o auxilio da biblioteca http que abstrai o tratamento de requisições http em prolog e facilita bastante o trabalho. | Boa |
