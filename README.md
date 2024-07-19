@@ -101,7 +101,7 @@ Apresente, brevemente, como cada membro do grupo contribuiu para o projeto.
 | Abraão Alves  | Participação do grupo 2 (resolver tabuleiro) | Regular |
 | Denniel William Roriz Lima  | Função de comparação, alguns tratamentos no para validação quando for um resultado verdadeiro ou falso, ajuste de bugs, documentação e outras tarefas dentro da subdivisão "Selecionar dificuldade e gerar tabuleiro" | Boa |
 | Francisco Mizael Santos da Silva  |  |  |
-| Mateus Caltabiano Neves Frauzino  | Participação no grupo 3 (API) e documentação | Boa |
+| Mateus Caltabiano Neves Frauzino  | Axuxiliei o grupo da API a desenvolver os endpoints de /sudoku/start/, /sudoku/get-lives/, /sudoku/get-help/, alguns deles não puderam ser utilizados nesse momento, mas serão úteis nas possíveis melhorias do projeto. Também auxiliei na solução de um bug crítico que estáva deixando mais de um número igual no mesmo quadrante | Boa |
 | Lucas Macedo Barboza  | Frontend da aplicação, ajuda nas endpointes da api, ajustes de bugs e integração | Boa |
 
 ## Outros 
